@@ -1,5 +1,11 @@
 # bca-v-feb-2023
 
+### Useful links
+
+> [Virtual Host Setup](https://github.com/GomendraProject/bca-v-feb-2023/discussions/1)
+
+### Scratch Pad
+
 ```md
 
 1. Php [index.php, routing]
