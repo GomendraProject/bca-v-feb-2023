@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,6 +12,20 @@
 <body>
 <h1>
     Hola
+
+    <?php
+
+    // include "header.php";
+
+    // require "header.php";
+
+    include_once "header.php";
+    include_once "header.php";
+
+    include_once "header.php";
+
+
+    ?>
 
     <?php
 
