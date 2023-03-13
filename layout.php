@@ -1,6 +1,10 @@
 <?php
 
-if(isset($_POST)) {
+function isPost() {
+    return $_SERVER["REQUEST_METHOD"] === "POST";
+}
+
+if(isPost()) {
     $username = $_POST["username"];
 
     // add to db
