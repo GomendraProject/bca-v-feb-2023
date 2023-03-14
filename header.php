@@ -1,3 +1,6 @@
+<?php
+include_once "includes/FlashMessage/FlashMessageManager.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,3 +22,5 @@
             <li>Logout</li>
         </ul>
     </nav>
+    <?php
+    renderMessages();

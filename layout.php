@@ -1,4 +1,7 @@
 <?php
+require_once "includes/FlashMessage/FlashMessageManager.php";
+
+renderMessages();
 
 function isPost() {
     return $_SERVER["REQUEST_METHOD"] === "POST";
@@ -11,7 +14,9 @@ if(isPost()) {
     
     // redirect
 
-    header("location: /");
+    addSuccessMessage("User added");
+
+    header("location: /layout.php");
 }
 
 ?>
