@@ -54,7 +54,7 @@ function renderMessage($message, $type)
     <?php
     else :
     ?>
-        <div class="alert alert-danger d-flex align-items-center" role="alert">
+        <div class="alert alert-danger" role="alert">
             💀
             <?= $message ?>
         </div>

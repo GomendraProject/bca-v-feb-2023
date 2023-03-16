@@ -6,6 +6,8 @@ $connection = ConnectionHelper::getConnection();
 // iterator based loop
 
 if(isPost()) {
+    
+    // Request Data Retrieval
     $productName = $_POST["name"];
     $unit = $_POST["unit"];
     $purchaseRate = $_POST["purchase_rate"];

@@ -4,7 +4,7 @@ require_once "../includes/Connection.php";
 
 $connection = ConnectionHelper::getConnection();
 
-$searchName = getParam("name");
+$searchName = getParam("name"); // $_GET["name"]
 $searchUnit = getParam("unit");
 
 // dd([
@@ -99,6 +99,12 @@ require_once "toolbox.php";
                             <a href="/product/edit.php?id=<?= $product['id'] ?>" class="btn btn-info">
                                 Edit
                             </a>
+                            <form action="/product/delete.php" method="post">
+                                <input type="hidden" name="id" value="<?= $product["id"] ?>">
+                                <button class="btn btn-danger">
+                                    Delete
+                                </button>
+                            </form>
                         </td>
                     </tr>
                 <?php
