@@ -1,7 +1,6 @@
 <?php
-require_once "../header.php";
-require_once "../includes/Connection.php";
 require_once "../includes/functions.php";
+require_once "../includes/Connection.php";
 
 $connection = ConnectionHelper::getConnection();
 
@@ -26,7 +25,9 @@ $result = $statement->fetchAll(PDO::FETCH_ASSOC);
 
 // iterator based loop
 
+require_once "../header.php";
 
+require_once "toolbox.php";
 ?>
 
 <div class="card">

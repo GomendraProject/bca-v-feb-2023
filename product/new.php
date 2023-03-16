@@ -1,7 +1,6 @@
 <?php
-require_once "../header.php";
-require_once "../includes/Connection.php";
 require_once "../includes/functions.php";
+require_once "../includes/Connection.php";
 
 $connection = ConnectionHelper::getConnection();
 // iterator based loop
@@ -24,14 +23,16 @@ if(isPost()) {
     $result = $statement->rowCount();
 
     if($result > 0) {
-        header("Location: /product/index.php");
+        addSuccessMessage("Product added");
     }
     else {
-
+        addErrorMessage("Error adding product");
     }
     header("Location: /product/index.php");
 }
 
+require_once "../header.php";
+require_once "toolbox.php";
 ?>
 
 <div class="row">

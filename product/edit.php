@@ -1,7 +1,6 @@
 <?php
-require_once "../header.php";
-require_once "../includes/Connection.php";
 require_once "../includes/functions.php";
+require_once "../includes/Connection.php";
 
 $connection = ConnectionHelper::getConnection();
 // iterator based loop
@@ -46,15 +45,18 @@ if (isPost()) {
     $success = $statement->execute();
 
     if($success) {
-
+        addSuccessMessage("Product updated");
     }
     else {
-
+        addErrorMessage("Error updating product");
     }
 
     header("Location: /product/index.php");
 }
 
+
+require_once "../header.php";
+require_once "toolbox.php";
 ?>
 
 <div class="row">
