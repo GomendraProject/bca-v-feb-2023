@@ -1,18 +1,31 @@
 <?php
 require_once "../header.php";
 require_once "../includes/Connection.php";
+require_once "../includes/functions.php";
 
 $connection = ConnectionHelper::getConnection();
 
-$query = "SELECT  * from product";
+$searchName = getParam("name");
+$searchUnit = getParam("unit");
+
+// dd([
+//     $searchName,
+//     $searchUnit
+// ]);
+
+$query = "SELECT  * from product where (:name is null or name like CONCAT('%',:name, '%')) and (:unit is null or unit = :unit) ";
 
 $statement = $connection->prepare($query);
+
+$statement->bindParam("name", $searchName);
+$statement->bindParam("unit", $searchUnit);
 
 $statement->execute();
 
 $result = $statement->fetchAll(PDO::FETCH_ASSOC);
 
 // iterator based loop
+
 
 ?>
 
@@ -23,6 +36,27 @@ $result = $statement->fetchAll(PDO::FETCH_ASSOC);
         </h5>
     </div>
     <div class="card-body">
+
+        <form action="">
+            <div class="row align-items-end">
+                <div class="col-3">
+                    <label for="">Name</label>
+                    <input type="text" name="name" class="form-control" value="<?= $searchName ?>">
+                </div>
+                <div class="col-3">
+                    <label for="">Unit</label>
+                    <input type="text" name="unit" class="form-control" value="<?= $searchUnit ?>">
+                </div>
+                <div class="col-3">
+                    <button class="btn btn-primary">
+                        Search
+                    </button>
+                </div>
+            </div>
+        </form>
+
+        <hr>
+
         <table class="table">
             <thead>
                 <tr>
@@ -61,7 +95,9 @@ $result = $statement->fetchAll(PDO::FETCH_ASSOC);
                             <?= $product["purchase_rate"] ?>
                         </td>
                         <td>
-
+                            <a href="/product/edit.php?id=<?= $product['id'] ?>" class="btn btn-info">
+                                Edit
+                            </a>
                         </td>
                     </tr>
                 <?php
