@@ -15,16 +15,22 @@ function getProduct($productId)
     return $result;
 }
 
+// Get product id from request url
 $productId = getParam("id");
 
+// Check if id is provided
 if ($productId == null) {
     // error condition
+    addErrorMessage("No product provided");
     header("Location: /product");
 }
 
 $product = getProduct($productId);
 
+// var_dump($product);
+
 if (!$product) {
+    addErrorMessage("Invalid product Id");
     header("Location: /product");
 }
 
@@ -51,6 +57,7 @@ if (isPost()) {
         addErrorMessage("Error updating product");
     }
 
+    // redirect
     header("Location: /product/index.php");
 }
 
