@@ -1,3 +1,6 @@
+<?php
+require_once "includes/functions.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -48,4 +51,5 @@
   </div>
 </nav>
 
-<div class="container p-2">
+<div class="container p-4">
+  <?php renderMessages(); ?>

@@ -1,9 +1,5 @@
 <?php
-
-function isPost()
-{
-    return $_SERVER["REQUEST_METHOD"] === "POST";
-}
+require_once "includes/functions.php";
 
 if (isPost()) {
     $username = $_POST["username"];

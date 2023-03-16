@@ -1,6 +1,9 @@
 <?php
 class ConnectionHelper
 {
+    /**
+     * @var PDO
+     */
     private static $connection;
 
     public static function getConnection() {
