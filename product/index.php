@@ -63,6 +63,9 @@ require_once "toolbox.php";
                 <tr>
                     <th>Sn</th>
                     <th>
+                        Image
+                    </th>
+                    <th>
                         Name
                     </th>
                     <th>
@@ -81,10 +84,17 @@ require_once "toolbox.php";
                 <?php
                 $sn = 0;
                 foreach ($result as $product) :
+                    $imageLink = "/assets/images/" . $product['image'];
                 ?>
                     <tr>
                         <td>
                             <?= ++$sn; ?>
+                        </td>
+                        <td>
+
+                            <a href="<?= $imageLink ?>" target="_blank">
+                                <img src="<?= $imageLink ?>" alt="" class="img img-thumbnail" style="height: 100px">
+                            </a>
                         </td>
                         <td>
                             <?= $product["name"] ?>

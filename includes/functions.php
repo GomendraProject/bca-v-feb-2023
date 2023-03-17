@@ -6,6 +6,11 @@ $u_error_message = $_SESSION['error_messagex'] ?? null;
 unset($_SESSION['success_messagex']);
 unset($_SESSION['error_messagex']);
 
+function saveFile($from, $to) {
+    $basePath = __DIR__ . "/../assets/images/" . $to;
+    move_uploaded_file($from, $basePath );
+}
+
 function isPost()
 {
     return $_SERVER["REQUEST_METHOD"] === "POST";

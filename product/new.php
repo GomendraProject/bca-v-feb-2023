@@ -12,13 +12,26 @@ if(isPost()) {
     $unit = $_POST["unit"];
     $purchaseRate = $_POST["purchase_rate"];
 
-    $query = "INSERT INTO `product`(`name`, `unit`, `purchase_rate`) VALUES (:name,:unit,:purchaseRate)";
+    $image = $_FILES['image'];
+
+    $imageName = "";
+
+    if($image['size'] > 0) {
+        // save file to hard disk
+        $name = date('y-m-d_h_i_s');
+        $extension = ".png"; // Check type and make extension
+        $imageName = $name . $extension;
+        saveFile($image['tmp_name'],  $imageName);
+    }
+
+    $query = "INSERT INTO `product`(`name`, `unit`, `purchase_rate`, `image`) VALUES (:name,:unit,:purchaseRate, :imageName)";
 
     $statement = $connection->prepare($query);
 
     $statement->bindParam("name", $productName);
     $statement->bindParam("unit", $unit);
     $statement->bindParam("purchaseRate", $purchaseRate, PDO::PARAM_STR);
+    $statement->bindParam("imageName", $imageName, PDO::PARAM_STR);
 
     $statement->execute();
 
@@ -39,7 +52,7 @@ require_once "toolbox.php";
 
 <div class="row">
     <div class="col-4">
-        <form action="" method="post" class="card">
+        <form action="" method="post" class="card" enctype="multipart/form-data">
             <div class="card-header">
                 <h5 class="card-title">
                     Add Product
@@ -57,6 +70,10 @@ require_once "toolbox.php";
                 <div class="form-group">
                     <label for="purchase_rate">Purchase Rate (*)</label>
                     <input type="number" step="any" name="purchase_rate" id="purchase_rate" class="form-control" required>
+                </div>
+                <div class="form-group mt-2">
+                    <label for="image">Upload Image</label>
+                    <input type="file" class="form-control" name="image">
                 </div>
             </div>
             <div class="card-footer">
