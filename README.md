@@ -111,7 +111,7 @@ user.name or user["name"]
 		
 		$_SESSION["user_id"] // returns 5
 		
-		
+	
 	1. Login Page
 		-> User posts username and password
 			-> Validate
@@ -145,3 +145,44 @@ user.name or user["name"]
 3. How to store a data in a session
 4. Authentication: what to store
 5. How to redirect if not logged in
+
+
+### March 19
+
+# Multiple Input
+
+[  name_input , rate_input, quantity_input ]
+[  name_input , rate_input, quantity_input ]
+[  name_input , rate_input, quantity_input ]
+[  name_input , rate_input, quantity_input ]
+[  name_input , rate_input, quantity_input ]
+
+<input type="text" name="name_input" />
+
+<input type="text" name="name_input[]" />
+
+<?php
+
+$name = $_POST['name_input']; // GET name
+
+// in case of multiple
+
+$names = $_POST['name_input'];
+
+// Select 
+
+$users = ...;
+
+$selectedUserId = $_GET['user_id'];
+
+?>
+
+<select name="user_id">
+	<?php foreach($users as $user): 
+		$selected = $user['id'] == $selectedUserId ? 'selected' : '';
+	?>
+		<option value="<?= $user['id'] ?>" <?= $selected ?>>
+			<?= $user['name'] . ' - ' . $user['mobile'] ?>
+		</option>
+	<?php endforeach; ?>
+</select>
