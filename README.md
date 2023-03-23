@@ -186,3 +186,42 @@ $selectedUserId = $_GET['user_id'];
 		</option>
 	<?php endforeach; ?>
 </select>
+
+
+
+
+## 2023-03-23
+
+
+1. User registration
+	
+	$password = $_POST['password']; // plain password
+	
+	$hashedPassword = password_hash($password, PASSWORD_BCRYPT); // Encrypted password
+	
+	// Ensure our password column is long enough
+	
+	// Prepare query and insert
+	
+	INSERT INTO user (username, password) values (:username, :password);
+	INSERT INTO user (username, password) values (?,?);
+
+	
+	->bindParam("username", $username)
+	->bindParam("password", $hashedPassword)
+	
+	->bindParam('ss', $username, $hashedPassword);
+	
+2. User authentication
+	$username = $_POST['username'];
+	$password = $_POST['password'];
+	
+	$user = GetUserByUserName($username);
+	
+	if($user == null) {
+		// Incorrect username
+	}
+	
+	// Verify that database password and user provided password match
+	
+	$passwordMatched = password_verify($password, $user['password']);
