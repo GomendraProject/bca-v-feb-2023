@@ -225,3 +225,125 @@ $selectedUserId = $_GET['user_id'];
 	// Verify that database password and user provided password match
 	
 	$passwordMatched = password_verify($password, $user['password']);
+	\
+	
+	
+	
+	
+	
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div>
+      <label for="Name">Name </label>
+      <input type="text" class="name" name="name" />
+      <label for="Name">Rate </label>
+      <input type="text" class="rate" name="name" />
+      <label for="Name">Quantity </label>
+      <input type="text" class="quantity" name="name" />
+      <label for="Name">Amount </label>
+      <input type="text" class="amount" name="name" />
+
+      <button type="button" id="add-btn">Add</button>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Rate</th>
+          <th>Quantity</th>
+          <th>Amount</th>
+        </tr>
+      </thead>
+      <tbody id="table-items"></tbody>
+    </table>
+
+    <template id="table-row-template">
+      <tr>
+        <td>
+          <input type="hidden" name="product[]" class="product" />
+          <span class="product_name"></span>
+        </td>
+        <td>
+          <input type="hidden" name="rate[]" class="rate" />
+          <span class="product_rate"></span>
+        </td>
+        <td>
+          <input type="hidden" name="quantity[]" class="quantity" />
+          <span class="product_quantity"></span>
+        </td>
+        <td>
+          <input type="hidden" name="amount[]" class="amount" />
+          <span class="product_amount"></span>
+        </td>
+      </tr>
+    </template>
+
+    <?php
+
+    $products = $_POST['product'];
+    $rates = $_POST['rate'];
+    $quantities = $_POST['quantity'];
+    $amounts = $_POST['amount'];
+
+    start transaction
+
+    for($i = 0; $i < count($products); $i ++) {
+        $product = $products[$i];
+        $rate = $rate[$i];
+        $quantity = $quantities[$i];
+        $amount = $amounts[$i];
+        // insert
+    }
+
+
+    commit
+
+    ?>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const addButton = document.querySelector("#add-btn");
+
+        const nameElm = document.querySelector(".name");
+        const rateElm = document.querySelector(".rate");
+        const qtyElm = document.querySelector(".quantity");
+        const amountElm = document.querySelector(".amount");
+
+        const templateRef = document.querySelector("#table-row-template");
+
+        const tableItems = document.querySelector("#table-items");
+
+        addButton.addEventListener("click", (e) => {
+            const cloneNode = templateRef.content.cloneNode(true);
+
+            cloneNode.querySelector('.product').value = nameElm.value;
+            cloneNode.querySelector('.product_name').textContent = nameElm.value;
+            cloneNode.querySelector('.product_rate').textContent = rateElm.value;
+            cloneNode.querySelector('.rate').value = rateElm.value;
+            cloneNode.querySelector('.product_quantity').textContent = qtyElm.value;
+            cloneNode.querySelector('.quantity').value = qtyElm.value;
+            cloneNode.querySelector('.product_amount').textContent = amountElm.value;
+            cloneNode.querySelector('.amount').value = amountElm.value;
+
+            tableItems.appendChild(cloneNode);
+
+        });
+      });
+    </script>
+
+    <style>
+      table {
+        width: 100%;
+      }
+    </style>
+  </body>
+</html>
+
