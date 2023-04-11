@@ -347,3 +347,53 @@ $selectedUserId = $_GET['user_id'];
   </body>
 </html>
 
+
+
+
+
+
+
+
+
+1. check_in
+	-> .. RoomNo
+	
+	
+	Form
+		-> Room No -> input type text
+			-> select
+				$rooms = GetRooms();
+				foreach ($room in $rooms) {
+					<option value="$room['id']"> <?= $room['name'] ?> </option>
+				}
+				
+			if is post
+				-> $roomNo = $_POST['room'];
+					-> $roomId = $_POST['room_id']
+			
+			// Db table
+				... RoomNo
+					->Change To RoomId
+					
+	Report -> inner join room 
+		$check_in['roomNo']
+		
+		
+		
+		select c.*, r.RoomName RoomName from check_in c inner join room r on c.roomId = r.id
+		
+		$check_in['RoomName']
+		
+	Edit
+		-> Same as before
+		-> Room No	-> Same as New
+						-> Mark as selected
+							foreach ($room in $rooms) {
+								$selected = $room['id'] == $check_in['roomId'] ? 'selected' : '';
+								
+								<option value="$room['id']" <?= $selected ?> > <?= $room['name'] ?> </option>
+								
+								
+								<option value="$room['id']" <?= $room['id'] == $check_in['roomId'] ? 'selected' : '' ?> > <?= $room['name'] ?> </option>
+							}
+
